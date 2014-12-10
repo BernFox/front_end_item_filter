@@ -103,26 +103,3 @@ angular.module('Supports',['ui.router', 'ui.bootstrap', 'checklistModel'])
           $http.post('/admin/support/assign', {ids:ids, user_id:assignment.id})
           alert('Supports successfully assigned')
 ]
-
-
-.controller 'FilterController', ['CollectionFilter', 'query', '$scope', 'supports'
-, (CollectionFilter, query, $scope, supports) ->
-    $scope.query = query
-    filterSupports = ->
-      for criterion in criteria
-        criterion.values = query[criterion.key]
-      $scope.filteredSupports = cachedQueries[JSON.stringify(query)] ||= CollectionFilter(supports, criteria)
-    watchQuery = (newVal, oldVal) ->
-      return if newVal is oldVal
-      filterSupports()
-    for keys, v of query
-      if(_.isArray(v))
-        $scope.$watchCollection "query.#{keys}", watchQuery
-      else
-        $scope.$watch "query['#{keys}']", watchQuery
-    filterSupports()
-]
-.controller 'FilterController', ['$scope', 'query', ($scope, query) ->
-  $scope.criteria = criteria
-  $scope.query = query
-]
