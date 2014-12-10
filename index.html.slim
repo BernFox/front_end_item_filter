@@ -1,0 +1,68 @@
+//= require admin/index
+
+div.list(ng-app="Supports")
+  ui-view
+
+  script(type="text/ng-template" id="supports.html" )
+    div.pagi(ng-if="total > limit")
+      | Displaying Supports {{ start + 1 }} - {{Math.min(start + limit, total)}} of {{total}} <br/>
+      a.prevBtn(href="#" class="{{start <= 1 && 'disabled'}}" ng-click="prevPage()")
+        button Previous <br/>
+      a.nextBtn(href="#" class="{{start + limit >= total && 'disabled'}}" ng-click="nextPage()")
+        button Next <br/>
+      a.new(href="new")
+        button New
+      button.delete(type='button' class='delete' ng-click="delete(support)") Delete
+      select.user-choices id='assignmentSelect'
+        option selected='selected' -- Pick a user --
+        option ng-repeat="dev in cdevs" value="{{dev}}"  {{dev.name}}
+      button.assign(type='button' ng-click="assign()") Assign
+      <br/>
+      |Search by title:
+      input type='text' name='TitleSearch' ng-model="text" ng-change="SearchSupports(text)"
+
+    <br/>
+    div.table
+      table
+        tbody
+          tr
+            th
+              | ID
+            th
+              | Title
+            th
+              | Min Grade
+            th
+              | Max Grade
+            th
+              | Assigned To
+            th
+              | Edit
+            th
+              | View in app
+            th
+              | Select
+          tr(ng-repeat="support in fil_supp")
+            td.id
+              |{{support.id}}
+            td.title
+              |{{support.title}}
+            td.min-grade
+              |{{support.min_grade.name}}
+            td.max-grade
+              |{{support.max_grade.name}}
+            td.assignment-name
+              |{{support.assignment.name}}
+            td
+              a(href="/admin/support/{{support.id}}/edit")
+                button Edit
+            td
+              a(href="/supports/{{support.id}}")
+                button View
+            td
+              input type='checkbox' checklist-model="selected" checklist-value="support"
+
+
+
+
+

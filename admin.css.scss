@@ -1,0 +1,28 @@
+.title{
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.assignment-name{
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+table {
+  border-spacing: 7px;
+  border-collapse: collapse
+}
+
+table, td, th {
+  border: 2px solid black;
+}
+
+
+.list{
+  position: absolute;
+  left: 500px;
+}
