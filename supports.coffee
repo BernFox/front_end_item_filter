@@ -1,3 +1,5 @@
+#This file shows an example of Angular.JS use 
+
 angular.module('Supports',['ui.router', 'ui.bootstrap', 'checklistModel'])
 .config ['$stateProvider', ($stateProvider) ->
   $stateProvider
